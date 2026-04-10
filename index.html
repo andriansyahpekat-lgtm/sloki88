@@ -2,7 +2,6 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slot Saldo & Redeem</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -13,7 +12,7 @@
   <img 
     src="https://i.ibb.co/3mXd4Bw8/logo-sloki.png"
     alt="Logo"
-    class="mb-6 w-52 h-20 object-contain"
+    class="mb-6 w-50 h-20 object-contain"
   >
 
   <!-- Container -->
@@ -23,20 +22,23 @@
       KLAIM KODE KEMENANGAN
     </h1>
 
+    <!-- Input Player ID -->
     <input 
-      type="text" 
+      type="text"
       id="playerId"
       placeholder="Masukkan ID Player"
       class="w-full px-4 py-2 mb-3 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
     >
 
+    <!-- Input Redeem Code -->
     <input 
-      type="text" 
+      type="text"
       id="redeemCode"
       placeholder="Masukkan Kode"
       class="w-full px-4 py-2 mb-5 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
     >
 
+    <!-- Button -->
     <button 
       onclick="spinSlot()"
       class="w-full py-3 rounded-lg font-bold text-black bg-gradient-to-r from-[#1cfdd7] to-cyan-400 hover:scale-105 transition"
@@ -48,14 +50,18 @@
   <!-- Modal -->
   <div id="modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden">
     <div class="bg-gray-900 p-6 rounded-xl w-80 text-center border border-[#1cfdd7]">
+      
       <h2 id="modalTitle" class="text-xl font-bold mb-3 text-white"></h2>
       <p id="modalText" class="text-sm whitespace-pre-line text-gray-300"></p>
+
+      <!-- Login Button -->
       <button 
-        onclick="closeModal()" 
+        onclick="goLogin()"
         class="mt-5 px-5 py-2 bg-[#1cfdd7] hover:bg-cyan-300 rounded text-black font-semibold"
       >
-        Tutup
+        Login
       </button>
+
     </div>
   </div>
 
@@ -63,8 +69,8 @@
     const validCodes = ["SLOKI88VIP"];
 
     function spinSlot() {
-      const playerId = document.getElementById('playerId').value.trim();
-      const redeemCode = document.getElementById('redeemCode').value.trim().toUpperCase();
+      const playerId = document.getElementById("playerId").value.trim();
+      const redeemCode = document.getElementById("redeemCode").value.trim().toUpperCase();
 
       if (!playerId || !redeemCode) {
         showModal("❌ Gagal", "ID Player dan Kode Redeem harus diisi!");
@@ -72,7 +78,7 @@
       }
 
       if (!validCodes.includes(redeemCode)) {
-        showModal("❌ Kode Tidak Valid", "Kode redeem tidak valid.");
+        showModal("❌ Kode Tidak Valid", "Kode redeem yang dimasukkan tidak valid.");
         return;
       }
 
@@ -91,21 +97,19 @@
 
       showModal(
         "🎉 KODE BERHASIL",
-        `ID: ${playerId}
-Saldo: ${saldoFormatted}
-Batas Waktu 2 Jam!
-Segera deposit dan menangkan saldonya!`
+        `ID: ${playerId}\nSaldo: ${saldoFormatted}\nBatas Waktu 2 Jam!\nSegera deposit dan menangkan saldonya!`
       );
     }
 
     function showModal(title, text) {
-      document.getElementById('modal').classList.remove('hidden');
-      document.getElementById('modalTitle').textContent = title;
-      document.getElementById('modalText').textContent = text;
+      document.getElementById("modalTitle").textContent = title;
+      document.getElementById("modalText").textContent = text;
+      document.getElementById("modal").classList.remove("hidden");
     }
 
-    function closeModal() {
-      document.getElementById('modal').classList.add('hidden');
+    function goLogin() {
+      // 👉 GANTI LINK INI
+      window.location.href = "https://sloki88val.com/?utm_medium=chat&utm_campaign=link-shared-in-chat&utm_source=livechat.com&utm_content=sloki88val.com";
     }
   </script>
 
