@@ -2,6 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slot Saldo & Redeem</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -12,15 +13,16 @@
   <img 
     src="https://i.ibb.co/3mXd4Bw8/logo-sloki.png"
     alt="Logo"
-    class="mb-6 w-50 h-20 object-contain"
+    class="mb-6 w-52 h-20 object-contain"
   >
 
-  <!-- Container Utama -->
+  <!-- Container -->
   <div class="bg-black/40 backdrop-blur-lg border border-[#1cfdd7] p-8 rounded-2xl shadow-2xl w-80 text-center">
     
-    <h1 class="text-2xl font-bold text-white mb-6"> KLAIM KODE KEMENANGAN </h1>
+    <h1 class="text-2xl font-bold text-white mb-6">
+      KLAIM KODE KEMENANGAN
+    </h1>
 
-    <!-- Input Player ID -->
     <input 
       type="text" 
       id="playerId"
@@ -28,7 +30,6 @@
       class="w-full px-4 py-2 mb-3 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
     >
 
-    <!-- Input Kode Redeem -->
     <input 
       type="text" 
       id="redeemCode"
@@ -36,7 +37,6 @@
       class="w-full px-4 py-2 mb-5 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
     >
 
-    <!-- Tombol Spin -->
     <button 
       onclick="spinSlot()"
       class="w-full py-3 rounded-lg font-bold text-black bg-gradient-to-r from-[#1cfdd7] to-cyan-400 hover:scale-105 transition"
@@ -45,7 +45,7 @@
     </button>
   </div>
 
-  <!-- Modal Hasil -->
+  <!-- Modal -->
   <div id="modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden">
     <div class="bg-gray-900 p-6 rounded-xl w-80 text-center border border-[#1cfdd7]">
       <h2 id="modalTitle" class="text-xl font-bold mb-3 text-white"></h2>
@@ -60,7 +60,6 @@
   </div>
 
   <script>
-    // ✅ Valid code hanya satu
     const validCodes = ["SLOKI88VIP"];
 
     function spinSlot() {
@@ -73,23 +72,29 @@
       }
 
       if (!validCodes.includes(redeemCode)) {
-        showModal("❌ Kode Tidak Valid", "Kode redeem yang dimasukkan tidak valid.");
+        showModal("❌ Kode Tidak Valid", "Kode redeem tidak valid.");
         return;
       }
 
       const minSaldo = 980000;
       const maxSaldo = 7800000;
+
       let saldoRandom = Math.floor(Math.random() * (maxSaldo - minSaldo + 1)) + minSaldo;
 
       if (saldoRandom % 2 !== 0) {
         saldoRandom += 1;
       }
 
-      const saldoFormatted = saldoRandom.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+      const saldoFormatted = saldoRandom
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
       showModal(
-        "🎉 KODE BERHASIL", 
-        `ID: ${playerId}\nSaldo: ${saldoFormatted}\nBatas Waktu 2 Jam!\nSegera deposit dan menangkan saldonya!`
+        "🎉 KODE BERHASIL",
+        `ID: ${playerId}
+Saldo: ${saldoFormatted}
+Batas Waktu 2 Jam!
+Segera deposit dan menangkan saldonya!`
       );
     }
 
