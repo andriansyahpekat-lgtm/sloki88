@@ -2,62 +2,72 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Slot Saldo & Redeem</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gradient-to-br from-black via-gray-900 to-[#1cfdd7] min-h-screen flex flex-col items-center justify-center">
+<body class="bg-gradient-to-br from-black via-gray-900 to-[#1cfdd7] min-h-screen flex items-center justify-center px-4">
 
-  <!-- Logo -->
-  <img 
-    src="https://i.ibb.co/3mXd4Bw8/logo-sloki.png"
-    alt="Logo"
-    class="mb-6 w-50 h-20 object-contain"
-  >
+  <!-- MAIN WRAPPER -->
+  <div class="w-full max-w-sm sm:max-w-md">
 
-  <!-- Container -->
-  <div class="bg-black/40 backdrop-blur-lg border border-[#1cfdd7] p-8 rounded-2xl shadow-2xl w-80 text-center">
-    
-    <h1 class="text-2xl font-bold text-white mb-6">
-      KLAIM KODE KEMENANGAN
-    </h1>
+    <!-- LOGO -->
+    <div class="flex justify-center mb-6">
+      <img 
+        src="https://i.ibb.co/3mXd4Bw8/logo-sloki.png"
+        alt="Logo"
+        class="w-40 sm:w-52 h-auto object-contain"
+      >
+    </div>
 
-    <!-- Input Player ID -->
-    <input 
-      type="text"
-      id="playerId"
-      placeholder="Masukkan ID Player"
-      class="w-full px-4 py-2 mb-3 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
-    >
+    <!-- CARD -->
+    <div class="bg-black/40 backdrop-blur-lg border border-[#1cfdd7] p-6 sm:p-8 rounded-2xl shadow-2xl text-center">
 
-    <!-- Input Redeem Code -->
-    <input 
-      type="text"
-      id="redeemCode"
-      placeholder="Masukkan Kode"
-      class="w-full px-4 py-2 mb-5 rounded bg-gray-800 text-white text-center uppercase focus:ring-2 focus:ring-[#1cfdd7] outline-none"
-    >
+      <h1 class="text-xl sm:text-2xl font-bold text-white mb-6">
+        KLAIM KODE KEMENANGAN
+      </h1>
 
-    <!-- Button -->
-    <button 
-      onclick="spinSlot()"
-      class="w-full py-3 rounded-lg font-bold text-black bg-gradient-to-r from-[#1cfdd7] to-cyan-400 hover:scale-105 transition"
-    >
-      AMBIL
-    </button>
+      <!-- INPUT PLAYER ID -->
+      <input
+        type="text"
+        id="playerId"
+        placeholder="Masukkan ID Player"
+        class="w-full px-4 py-3 mb-3 rounded bg-gray-800 text-white text-center uppercase
+               focus:ring-2 focus:ring-[#1cfdd7] outline-none text-sm sm:text-base"
+      >
+
+      <!-- INPUT REDEEM CODE -->
+      <input
+        type="text"
+        id="redeemCode"
+        placeholder="Masukkan Kode"
+        class="w-full px-4 py-3 mb-5 rounded bg-gray-800 text-white text-center uppercase
+               focus:ring-2 focus:ring-[#1cfdd7] outline-none text-sm sm:text-base"
+      >
+
+      <!-- BUTTON -->
+      <button
+        onclick="spinSlot()"
+        class="w-full py-3 rounded-lg font-bold text-black bg-gradient-to-r from-[#1cfdd7] to-cyan-400
+               hover:scale-[1.02] active:scale-[0.98] transition text-sm sm:text-base"
+      >
+        AMBIL
+      </button>
+
+    </div>
   </div>
 
-  <!-- Modal -->
-  <div id="modal" class="fixed inset-0 bg-black/80 flex items-center justify-center hidden">
-    <div class="bg-gray-900 p-6 rounded-xl w-80 text-center border border-[#1cfdd7]">
-      
-      <h2 id="modalTitle" class="text-xl font-bold mb-3 text-white"></h2>
+  <!-- MODAL -->
+  <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center px-4">
+    <div class="bg-gray-900 p-6 rounded-xl w-full max-w-sm text-center border border-[#1cfdd7]">
+
+      <h2 id="modalTitle" class="text-lg sm:text-xl font-bold mb-3 text-white"></h2>
       <p id="modalText" class="text-sm whitespace-pre-line text-gray-300"></p>
 
-      <!-- Login Button -->
-      <button 
+      <button
         onclick="goLogin()"
-        class="mt-5 px-5 py-2 bg-[#1cfdd7] hover:bg-cyan-300 rounded text-black font-semibold"
+        class="mt-5 w-full py-2 bg-[#1cfdd7] hover:bg-cyan-300 rounded text-black font-semibold"
       >
         Login
       </button>
@@ -65,6 +75,7 @@
     </div>
   </div>
 
+  <!-- SCRIPT -->
   <script>
     const validCodes = ["SLOKI88VIP"];
 
@@ -87,9 +98,7 @@
 
       let saldoRandom = Math.floor(Math.random() * (maxSaldo - minSaldo + 1)) + minSaldo;
 
-      if (saldoRandom % 2 !== 0) {
-        saldoRandom += 1;
-      }
+      if (saldoRandom % 2 !== 0) saldoRandom++;
 
       const saldoFormatted = saldoRandom
         .toString()
@@ -104,11 +113,13 @@
     function showModal(title, text) {
       document.getElementById("modalTitle").textContent = title;
       document.getElementById("modalText").textContent = text;
-      document.getElementById("modal").classList.remove("hidden");
+
+      const modal = document.getElementById("modal");
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
     }
 
     function goLogin() {
-      // 👉 GANTI LINK INI
       window.location.href = "https://sloki88val.com/?utm_medium=chat&utm_campaign=link-shared-in-chat&utm_source=livechat.com&utm_content=sloki88val.com";
     }
   </script>
